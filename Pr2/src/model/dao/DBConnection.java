@@ -1,3 +1,5 @@
+package model.dao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,7 +20,6 @@ public class DBConnection {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-
         return con;
     }
 
@@ -32,5 +33,6 @@ public class DBConnection {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
     }
 }

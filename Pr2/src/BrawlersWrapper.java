@@ -1,4 +1,7 @@
 import com.google.gson.Gson;
+import controller.Controller;
+import model.Brawler;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -12,9 +15,7 @@ public class BrawlersWrapper {
 
     //Main
     public static void main(String[] args) {
-        DBConnection.openCon();
-        DBConnection.closeCon(DBConnection.openCon());
-        /*Gson gson = new Gson();
+        Gson gson = new Gson();
 
         try (FileReader reader = new FileReader("nous_brawlers.json")) {
 
@@ -30,12 +31,12 @@ public class BrawlersWrapper {
             BrawlersWrapper wrapper = gson.fromJson(reader, BrawlersWrapper.class);
 
             //Gson busca al JSON la clau brawlers >> obrir nou_brawlers.json
-            //Com que BrawlersWrapper té un camp List<Brawler> brawlers (linia 6 del codi), Gson sap que ha de deserialitzar aquesta llista d'objectes.
-            //Per cada element dins l'array, crea un objecte de tipus Brawler i l'omple amb les dades corresponents (nom, raritat, etc.).
+            //Com que BrawlersWrapper té un camp List<model.Brawler> brawlers (linia 6 del codi), Gson sap que ha de deserialitzar aquesta llista d'objectes.
+            //Per cada element dins l'array, crea un objecte de tipus model.Brawler i l'omple amb les dades corresponents (nom, raritat, etc.).
             //Finalment, retorna un objecte BrawlersWrapper que conté la llista.
 
             for (Brawler b : wrapper.getBrawlers()) {
-                System.out.println("Brawler ID: " + b.getBrawler_id());
+                System.out.println("model.Brawler ID: " + b.getBrawler_id());
                 System.out.println("Nom: " + b.getNom());
                 System.out.println("Classe ID: " + b.getClass_id());
                 System.out.println("Raritat ID: " + b.getRarity_id());
@@ -44,6 +45,6 @@ public class BrawlersWrapper {
 
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 }

@@ -1,3 +1,5 @@
+package model;
+
 public class Brawler {
     int brawler_id;
     String nom;

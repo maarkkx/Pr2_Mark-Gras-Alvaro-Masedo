@@ -1,0 +1,32 @@
+package View;
+
+public class View {
+    public static void menuPrincipal(){
+        System.out.println("----- BRAWL STARS -----\n");
+
+        System.out.println("1. Llistar els Brawlers actuals a la Base de Dades.");
+        System.out.println("2. Mostrar el contingut a l'Endpoint.");
+        System.out.println("3. Modificar personatge segons l’endpoint.");
+        System.out.println("4. Còpia total de les dades obtingudes de l’endpoint.");
+        System.out.println("5. Mostrar contingut JSON.");
+        System.out.println("6. Modificar personatge segons el JSON.");
+        System.out.println("7. Còpia total de les dades obtingudes del JSON.");
+        System.out.println("0. Sortir");
+    }
+
+    public static void menuCopiaEndpoint(){
+        System.out.println("----- COPIAR DADES ENDPOINT -----\n");
+
+        System.out.println("1. Còpia Parcial: Copiar personatges que no existeixen a la Base de Dades.");
+        System.out.println("2. Còpia complerta: copiarà tots els personatges de l’endpoint a la BDD, sobrescrivint els existents.");
+        System.out.println("0. Enrere.");
+    }
+
+    public static void menuCopiaJSON(){
+        System.out.println("----- COPIAR DADES JSON -----\n");
+
+        System.out.println("1. Còpia Parcial: Copiar personatges que no existeixen a la Base de Dades.");
+        System.out.println("2. Còpia complerta: copiarà tots els personatges del JSON a la BDD, sobrescrivint els existents.");
+        System.out.println("0. Enrere.");
+    }
+}
