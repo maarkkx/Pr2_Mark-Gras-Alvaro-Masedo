@@ -40,8 +40,7 @@ public class BrawlersWrapper {
                 System.out.println("Nom: " + b.getNom());
                 System.out.println("Classe ID: " + b.getClass_id());
                 System.out.println("Raritat ID: " + b.getRarity_id());
-                System.out.println("-----------");
-            }
+                System.out.println("-----------");            }
 
         } catch (IOException e) {
             e.printStackTrace();
