@@ -5,7 +5,7 @@ import java.net.URL;
 import model.BrawlersWrapper;
 import com.google.gson.Gson;
 
-public class ApiFetcher {
+public class ApiConnection {
 
     public static BrawlersWrapper fetchBrawlers(){
         String urlString = "https://api.brawlify.com/v1/brawlers";
