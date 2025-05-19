@@ -51,9 +51,12 @@ public class model {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("src/jsons/nous_brawlers.json")) {
 
+            //creacio de llista RootBrawlers per accedir a la llista del json
             RootBrawlers root = gson.fromJson(reader, RootBrawlers.class);
+            //Agafo tots els brawlers i els afegeixo en una llista de nomes brawlers
             List<Brawler> brawlers = root.getList();
 
+            //mostro les dades de la llista:
             for (Brawler b : brawlers) {
                 System.out.println("Brawler: " + b.getName());
                 System.out.println("  Class: " + b.getBrawlerClass().getName());
