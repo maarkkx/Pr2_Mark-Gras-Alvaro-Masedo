@@ -19,31 +19,29 @@ public class BrawlersWrapper {
 
         try (FileReader reader = new FileReader("nous_brawlers.json")) {
 
-            //un wrapper o "stream wrapper" ens permet llegir el cos de la petició HTTP. És a dir, una interfície que permet accedir a dades d’E/S (fitxers, sockets, text, ...)
-            //amb la següent línia el que estem fent és convertir el contingut del JSON en un objecte java, com? utilitzant GSon
-            //gson.fromJson > Llegeix dades JSON (des d'un Reader, String, InputStream, etc.)
-            //Deserialitza aquest JSON (és a dir, el converteix en objectes Java)
-            //que li passem per paràmetre a la funció fromJson?
-            //1er argument (reader): està referenciant el fitxer
-            //2n argument (model.BrawlersWrapper.class): nom de la classe que serialitzem, aquest argument li diu a Gson: "Vull que l'objecte que surt d'aquest JSON sigui un model.BrawlersWrapper."
-            //és a dir, li estem dient quin tipus d'objecte Java ha de construir a partir del JSON.
-            //en definitiva el que fa aquesta línia és dir-li a GSon: "Llegeix el JSON i crea un objecte de la classe model.BrawlersWrapper, omplint-ne els camps segons les dades que trobis"
-            BrawlersWrapper wrapper = gson.fromJson(reader, BrawlersWrapper.class);
+            //Com el json que ens passa no comença amb una llista sino amb un atribut directament podem crear la llista
+            //de la clase brawler
+            Brawler[] brawlers = gson.fromJson(reader, Brawler[].class);
 
-            //Gson busca al JSON la clau brawlers >> obrir nou_brawlers.json
-            //Com que model.BrawlersWrapper té un camp List<model.Brawler> brawlers (linia 6 del codi), Gson sap que ha de deserialitzar aquesta llista d'objectes.
-            //Per cada element dins l'array, crea un objecte de tipus model.Brawler i l'omple amb les dades corresponents (nom, raritat, etc.).
-            //Finalment, retorna un objecte model.BrawlersWrapper que conté la llista.
+            for (Brawler b : brawlers) {
+                System.out.println("Brawler: " + b.getName());
+                System.out.println("  Class: " + b.getBrawlerClass().getName());
+                System.out.println("  Rarity: " + b.getRarity().getName());
+                if (b.getStarPowers() != null) {
+                    for (Brawler.StarPower sp : b.getStarPowers()) {
+                        System.out.println("  Star Power: " + sp.getName() + " - " + sp.getDescription());
+                    }
+                }
+                if (b.getGadgets() != null) {
+                    for (Brawler.Gadget gd : b.getGadgets()) {
+                        System.out.println("  Gadget: " + gd.getName() + " - " + gd.getDescription());
+                    }
+                }
 
-            for (Brawler b : wrapper.getBrawlers()) {
-                System.out.println("model.Brawler ID: " + b.getBrawler_id());
-                System.out.println("Nom: " + b.getNom());
-                System.out.println("Classe ID: " + b.getClass_id());
-                System.out.println("Raritat ID: " + b.getRarity_id());
-                System.out.println("-----------");            }
+            }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e);
         }
     }
 }

@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class Controller {
     public static void menu(){
-        int num = -1;
+        int num = -2;
         Scanner scan = new Scanner(System.in);
         while (num != 0) {
+            num = -1;
             View.menuPrincipal();
             num = scan.nextInt();
             scan.nextLine();
