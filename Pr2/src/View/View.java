@@ -2,7 +2,7 @@ package View;
 
 public class View {
     public static void menuPrincipal(){
-        System.out.println("----- BRAWL STARS -----\n");
+        System.out.println("\n----- BRAWL STARS -----\n");
 
         System.out.println("1. Llistar els Brawlers actuals a la Base de Dades.");
         System.out.println("2. Llistar un Brawler actual de la Base de Dades.");
