@@ -36,11 +36,15 @@ public class BrawlersWrapper {
             //Finalment, retorna un objecte model.BrawlersWrapper que conté la llista.
 
             for (Brawler b : wrapper.getBrawlers()) {
-                System.out.println("model.Brawler ID: " + b.getBrawler_id());
+                System.out.println("Brawler ID: " + b.getBrawler_id());
                 System.out.println("Nom: " + b.getNom());
                 System.out.println("Classe ID: " + b.getClass_id());
+                System.out.println("Classe Nom: " + b.getClass_nom());
                 System.out.println("Raritat ID: " + b.getRarity_id());
-                System.out.println("-----------");            }
+                System.out.println("Raritat Nom: " + b.getRarity_nom());
+                System.out.println();
+                System.out.println("-----------");
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
