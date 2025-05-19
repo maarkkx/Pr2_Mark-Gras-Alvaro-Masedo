@@ -1,6 +1,7 @@
 package model;
 
 import com.google.gson.Gson;
+import controller.Controller;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,8 +17,8 @@ public class BrawlersWrapper {
     //Main
     public static void main(String[] args) {
         Gson gson = new Gson();
-
-        try (FileReader reader = new FileReader("nous_brawlers.json")) {
+        Controller.menu();
+        /*try (FileReader reader = new FileReader("nous_brawlers.json")) {
 
             //Com el json que ens passa no comença amb una llista sino amb un atribut directament podem crear la llista
             //de la clase brawler
@@ -42,6 +43,6 @@ public class BrawlersWrapper {
 
         } catch (IOException e) {
             System.out.println(e);
-        }
+        }*/
     }
 }
