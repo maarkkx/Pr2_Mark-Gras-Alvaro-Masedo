@@ -18,9 +18,7 @@ public class BrawlersWrapper {
     public static void main(String[] args) {
         Gson gson = new Gson();
 
-        Controller.menu();
-
-        /*try (FileReader reader = new FileReader("nous_brawlers.json")) {
+        try (FileReader reader = new FileReader("nous_brawlers.json")) {
 
             //Com el json que ens passa no comença amb una llista sino amb un atribut directament podem crear la llista
             //de la clase brawler
@@ -40,11 +38,10 @@ public class BrawlersWrapper {
                         System.out.println("  Gadget: " + gd.getName() + " - " + gd.getDescription());
                     }
                 }
-
             }
 
         } catch (IOException e) {
             System.out.println(e);
-        }*/
+        }
     }
 }
