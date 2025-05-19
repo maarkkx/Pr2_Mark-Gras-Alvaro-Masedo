@@ -1,6 +1,7 @@
 package controller;
 import View.*;
 import java.util.Scanner;
+import model.*;
 
 public class Controller {
     public static void menu(){
@@ -42,7 +43,8 @@ public class Controller {
                                 break;
                             case 2:
                                 //Còpia complerta: copiarà tots els personatges de l’endpoint a la BDD, sobrescrivint els existents.
-
+                                model.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
+                                model.llegirJson();
                                 break;
                         }
                     }

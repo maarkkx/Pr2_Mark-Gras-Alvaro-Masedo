@@ -4,12 +4,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-
+import com.google.gson.annotations.SerializedName;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
 
 public class model {
@@ -33,12 +35,46 @@ public class model {
 
             //Crear arxiu i guardar el contingut
             File file = new File(ruta);
+            if (file.exists()) {
+                file.delete();
+            }
             file.getParentFile().mkdirs();
             FileWriter writer = new FileWriter(file);
             writer.write(jsonFormatejat);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void llegirJson() {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader("src/jsons/nous_brawlers.json")) {
+
+            RootBrawlers root = gson.fromJson(reader, RootBrawlers.class);
+            List<Brawler> brawlers = root.getList();
+
+            for (Brawler b : brawlers) {
+                System.out.println("Brawler: " + b.getName());
+                System.out.println("  Class: " + b.getBrawlerClass().getName());
+                System.out.println("  Rarity: " + b.getRarity().getName());
+
+                if (b.getStarPowers() != null) {
+                    for (Brawler.StarPower sp : b.getStarPowers()) {
+                        System.out.println("  Star Power: " + sp.getName() + " - " + sp.getDescription());
+                    }
+                }
+
+                if (b.getGadgets() != null) {
+                    for (Brawler.Gadget gd : b.getGadgets()) {
+                        System.out.println("  Gadget: " + gd.getName() + " - " + gd.getDescription());
+                    }
+                }
+                System.out.println();
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 }
