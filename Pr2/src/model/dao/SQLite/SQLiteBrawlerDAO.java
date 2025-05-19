@@ -25,7 +25,7 @@ public class SQLiteBrawlerDAO {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()){
-                System.out.printf("Brawler ID: %-10d Nom: %-20s Class ID: %-5d Rarity ID: %-5d\n",
+                System.out.printf("Brawler ID: %-10d Nom: %-15s Class ID: %-5d Rarity ID: %-5d\n",
                         rs.getInt("brawler_id"),
                         rs.getString("nom"),
                         rs.getInt("class_id"),
@@ -68,7 +68,7 @@ public class SQLiteBrawlerDAO {
                 // Mostra les dades del Brawler
                 stmt.setString(1,nom);
                 ResultSet rs2 = stmt.executeQuery();
-                    System.out.printf("Brawler ID: %-10d Nom: %-20s Class ID: %-5d Rarity ID: %-5d\n",
+                    System.out.printf("Brawler ID: %-10d Nom: %-15s Class ID: %-5d Rarity ID: %-5d\n",
                             rs2.getInt("brawler_id"),
                             rs2.getString("nom"),
                             rs2.getInt("class_id"),
