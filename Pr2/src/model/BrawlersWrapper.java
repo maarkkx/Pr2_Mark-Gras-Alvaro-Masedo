@@ -38,7 +38,6 @@ public class BrawlersWrapper {
                         System.out.println("  Gadget: " + gd.getName() + " - " + gd.getDescription());
                     }
                 }
-
             }
 
         } catch (IOException e) {
