@@ -13,26 +13,27 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class model {
-    public static void descarregarJson(String endpoint, String filePath) {
+    public static void getJson(String endpoint, String ruta) {
         try {
+            //Creacio conexio HTTP amb la api
             URL url = new URL(endpoint);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
+            //Llegir el json rebut i donar-li format
             Scanner scanner = new Scanner(conn.getInputStream());
             StringBuilder jsonSenseFormat = new StringBuilder();
             while (scanner.hasNext()) {
                 jsonSenseFormat.append(scanner.nextLine());
             }
             scanner.close();
-
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             JsonElement jsonElement = JsonParser.parseString(jsonSenseFormat.toString());
             String jsonFormatejat = gson.toJson(jsonElement);
 
-            File file = new File(filePath);
+            //Crear arxiu i guardar el contingut
+            File file = new File(ruta);
             file.getParentFile().mkdirs();
-
             FileWriter writer = new FileWriter(file);
             writer.write(jsonFormatejat);
             writer.close();
