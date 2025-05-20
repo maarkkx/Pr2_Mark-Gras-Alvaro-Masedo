@@ -1,6 +1,6 @@
 package model;
 
-public interface CRUD<Brawler>{
+public interface CRUD<Object>{
     void crear(Brawler obj);
 
     void actualitzar(Brawler obj);

@@ -1,5 +1,7 @@
 package model.dao.SQLite;
 
+import model.Brawler;
+import model.CRUD;
 import model.dao.DBConnection;
 
 import java.sql.Connection;
@@ -8,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class SQLiteBrawlerDAO {
+public class SQLiteBrawlerDAO implements CRUD {
 
     /**
      *Llegeix totes les entrades de la Base de Dades
@@ -83,4 +85,47 @@ public class SQLiteBrawlerDAO {
             System.out.println("Error al llegir dades de la base de dades");
         }
     }
+
+    @Override
+    public void eliminar(int id) {
+        Connection con = DBConnection.openCon();
+        try {
+            PreparedStatement ps = con.prepareStatement("DELETE FROM brawlers WHERE brawler_id = ?");
+
+            PreparedStatement check = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
+            check.setInt(1, id);
+            ResultSet rs = check.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                ps.setInt(1, id);
+                ps.executeUpdate();
+                System.out.println("S'ha eliminat correctament");
+            } else {
+                System.out.println("El brawler no existeix, prova amb un altre");
+            }
+            con.close();
+            ps.close();
+            check.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+
+    @Override
+    public void crear(Brawler obj) {
+        Connection con = DBConnection.openCon();
+        try {
+            PreparedStatement ps = con.prepareStatement("INSERT INTO brawlers(brawler_id, nom, class_id, rarity_id) VALUES (?,?,?,?)");
+            ps.setInt(1, obj.getId());
+            ps.
+        } catch (SQLException e) {
+
+        }
+    }
+
+    @Override
+    public void actualitzar(Brawler obj) {
+
+    }
+
 }
