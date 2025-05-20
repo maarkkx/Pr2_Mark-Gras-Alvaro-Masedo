@@ -18,19 +18,23 @@ public class SQLiteGadgetDAO implements CRUD {
         Connection con = DBConnection.openCon();
 
         try (PreparedStatement stmt = con.prepareStatement(sql)){
-            stmt.setInt(1,obj.getGadgets().get(0).getId());
-            stmt.setString(2,obj.getGadgets().get(0).getName());
-            stmt.setString(3,obj.getGadgets().get(0).getDescription());
-            stmt.setInt(4,obj.getId());
+            if (obj.getGadgets().size() > 1) {
+                stmt.setInt(1,obj.getGadgets().get(0).getId());
+                stmt.setString(2,obj.getGadgets().get(0).getName());
+                stmt.setString(3,obj.getGadgets().get(0).getDescription());
+                stmt.setInt(4,obj.getId());
+                stmt.executeUpdate();
+            }
 
             PreparedStatement stmt2 = con.prepareStatement(sql);
-            stmt2.setInt(1,obj.getGadgets().get(1).getId());
-            stmt2.setString(2,obj.getGadgets().get(1).getName());
-            stmt2.setString(3,obj.getGadgets().get(1).getDescription());
-            stmt2.setInt(4,obj.getId());
+            if (obj.getGadgets().size() > 2) {
 
-            stmt.executeUpdate();
-            stmt2.executeUpdate();
+                stmt2.setInt(1,obj.getGadgets().get(1).getId());
+                stmt2.setString(2,obj.getGadgets().get(1).getName());
+                stmt2.setString(3,obj.getGadgets().get(1).getDescription());
+                stmt2.setInt(4,obj.getId());
+                stmt2.executeUpdate();
+            }
             System.out.println("S'han afegit correctament elements a la taula");
             stmt.close();
             stmt2.close();
@@ -46,21 +50,26 @@ public class SQLiteGadgetDAO implements CRUD {
         Connection con = DBConnection.openCon();
 
         try (PreparedStatement stmt = con.prepareStatement(sql)){
-            stmt.setInt(1,obj.getGadgets().get(0).getId());
-            stmt.setString(2,obj.getGadgets().get(0).getName());
-            stmt.setString(3,obj.getGadgets().get(0).getDescription());
-            stmt.setInt(4,obj.getId());
-            stmt.setInt(5,obj.getGadgets().get(0).getId());
+            if (obj.getGadgets().size() > 1) {
+                stmt.setInt(1,obj.getGadgets().get(0).getId());
+                stmt.setString(2,obj.getGadgets().get(0).getName());
+                stmt.setString(3,obj.getGadgets().get(0).getDescription());
+                stmt.setInt(4,obj.getId());
+                stmt.setInt(5,obj.getGadgets().get(0).getId());
+                stmt.executeUpdate();
+            }
+
 
             PreparedStatement stmt2 = con.prepareStatement(sql);
-            stmt2.setInt(1,obj.getGadgets().get(1).getId());
-            stmt2.setString(2,obj.getGadgets().get(1).getName());
-            stmt2.setString(3,obj.getGadgets().get(1).getDescription());
-            stmt2.setInt(4,obj.getId());
-            stmt2.setInt(5,obj.getGadgets().get(1).getId());
+            if (obj.getGadgets().size() >2) {
+                stmt2.setInt(1,obj.getGadgets().get(1).getId());
+                stmt2.setString(2,obj.getGadgets().get(1).getName());
+                stmt2.setString(3,obj.getGadgets().get(1).getDescription());
+                stmt2.setInt(4,obj.getId());
+                stmt2.setInt(5,obj.getGadgets().get(1).getId());
+                stmt2.executeUpdate();
+            }
 
-            stmt.executeUpdate();
-            stmt2.executeUpdate();
             System.out.println("S'han actualitzat correctament els elements a la taula");
             stmt.close();
             stmt2.close();

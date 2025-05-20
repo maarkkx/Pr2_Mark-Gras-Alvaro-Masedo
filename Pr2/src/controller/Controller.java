@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import model.api.ApiConnection;
 import model.dao.SQLite.SQLiteGadgetDAO;
+import model.dao.SQLite.SQLiteStarpowerDAO;
 
 public class Controller {
     public static void menu(){
@@ -25,7 +26,8 @@ public class Controller {
                     break;
                 case 3:
                     //Mostrar el contingut a l'Endpoint.
-
+                    ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
+                    ApiConnection.llegirJson();
                     break;
                 case 4:
                     //Modificar personatge segons l’endpoint.
@@ -41,56 +43,40 @@ public class Controller {
                         switch (num2){
                             case 1:
                                 //Còpia Parcial: Copiar personatges que no existeixen a la Base de Dades.
-
+                                ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
+                                ApiConnection.afegirBrawlers();
                                 break;
                             case 2:
                                 //Còpia complerta: copiarà tots els personatges de l’endpoint a la BDD, sobrescrivint els existents.
                                 ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
                                 ApiConnection.llegirJson();
+                                ApiConnection.actualitzarBrawlers();
                                 break;
                         }
                     }
                     break;
                 case 6:
                     //Mostrar contingut JSON.
-
+                    ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
                     break;
                 case 7:
                     //Modificar personatge segons el JSON.
 
                     break;
                 case 8:
-                    //Còpia total de les dades obtingudes del JSON.
-                    int num3 = -1;
-                    while (num3 != 0){
-                        View.menuCopiaJSON();
-                        num3 = scan.nextInt();
-                        scan.nextLine();
-                        switch (num3){
-                            case 1:
-                                //Còpia Parcial: Copiar personatges que no existeixen a la Base de Dades.
-
-                                break;
-                            case 2:
-                                //Còpia complerta: copiarà tots els personatges del JSON a la BDD, sobrescrivint els existents.
-
-                                break;
-                        }
-                    }
+                    //Mostrar tots els gadgets
+                    GadgetController.llistarTot();
                     break;
                 case 9:
-                    //Mostrar tots els gadgets
-                    BrawlerController.llistarTot();
+                    //Mostrar gadgets d'un Brawler
+                    GadgetController.llistarUn();
                     break;
                 case 10:
-                    //Mostrar gadgets d'un Brawler
-                    BrawlerController.llistarUn();
+                    //Mostrar tots els starpowers
+                    SQLiteStarpowerDAO sp = new SQLiteStarpowerDAO();
+                    sp.llegirTot();
                     break;
                 case 11:
-                    //Mostrar tots els starpowers
-
-                    break;
-                case 12:
                     //Mostrar starpowers d'un Brawler
 
                     break;

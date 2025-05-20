@@ -6,9 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import model.Brawler;
 import model.RootBrawlers;
-import model.dao.SQLite.SQLiteBrawlerDAO;
-import model.dao.SQLite.SQLiteClassDAO;
-import model.dao.SQLite.SQLiteRarityDAO;
+import model.dao.SQLite.*;
 
 import java.io.File;
 import java.io.FileReader;
@@ -76,14 +74,57 @@ public class ApiConnection {
                     }
                 }
                 System.out.println();
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void afegirBrawlers() {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader("src/jsons/nous_brawlers.json")) {
+
+            RootBrawlers root = gson.fromJson(reader, RootBrawlers.class);
+            List<Brawler> brawlers = root.getList();
+
+            for (Brawler b : brawlers) {
                 SQLiteRarityDAO daoR = new SQLiteRarityDAO();
                 daoR.crear(b);
                 SQLiteClassDAO daoC = new SQLiteClassDAO();
                 daoC.crear(b);
                 SQLiteBrawlerDAO dao = new SQLiteBrawlerDAO();
                 dao.crear(b);
+                SQLiteStarpowerDAO daoSP = new SQLiteStarpowerDAO();
+                daoSP.crear(b);
+                SQLiteGadgetDAO daoG = new SQLiteGadgetDAO();
+                daoG.crear(b);
             }
 
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void actualitzarBrawlers() {
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader("src/jsons/nous_brawlers.json")) {
+
+            RootBrawlers root = gson.fromJson(reader, RootBrawlers.class);
+            List<Brawler> brawlers = root.getList();
+
+            for (Brawler b : brawlers) {
+                SQLiteRarityDAO daoR = new SQLiteRarityDAO();
+                daoR.actualitzar(b);
+                SQLiteClassDAO daoC = new SQLiteClassDAO();
+                daoC.actualitzar(b);
+                SQLiteBrawlerDAO dao = new SQLiteBrawlerDAO();
+                dao.actualitzar(b);
+                SQLiteStarpowerDAO daoSP = new SQLiteStarpowerDAO();
+                daoSP.actualitzar(b);
+                SQLiteGadgetDAO daoG = new SQLiteGadgetDAO();
+                daoG.actualitzar(b);
+            }
         } catch (IOException e) {
             System.out.println(e);
         }
