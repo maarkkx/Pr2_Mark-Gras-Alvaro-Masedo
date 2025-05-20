@@ -135,14 +135,14 @@ public class SQLiteGadgetDAO implements CRUD {
                 // Mostra les dades del gadget
                 stmt.setInt(1,id);
                 ResultSet rs2 = stmt.executeQuery();
-                System.out.printf("Gadget ID: %-10d Nom: %-15s Descripcio %-80s Brawler ID: %-5d\n",
-                        rs.getInt("gadget_id"),
-                        rs.getString("nom"),
-                        rs.getString("descripcio"),
-                        rs.getInt("brawler_id")
+                System.out.printf("Gadget ID: %-10d Nom: %-25s Descripcio: %-130s Brawler ID: %-5d\n",
+                        rs2.getInt("gadget_id"),
+                        rs2.getString("nom"),
+                        rs2.getString("descripcio"),
+                        rs2.getInt("brawler_id")
                 );
             } else {
-                System.out.println("El Brawler no existeix, prova amb un altre nom");
+                System.out.println("El Brawler no existeix, prova amb un altre ID");
             }
             stmt.close();
             con.close();
@@ -164,7 +164,7 @@ public class SQLiteGadgetDAO implements CRUD {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()){
-                System.out.printf("Gadget ID: %-10d Nom: %-15s Descripcio %-80s Brawler ID: %-5d\n",
+                System.out.printf("Gadget ID: %-10d Nom: %-25s Descripcio: %-130s Brawler ID: %-5d\n",
                         rs.getInt("gadget_id"),
                         rs.getString("nom"),
                         rs.getString("descripcio"),
