@@ -3,9 +3,9 @@ package model.api;
 import com.google.gson.Gson;
 import model.BrawlersWrapper;
 
+
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URI;
 import java.net.URL;
 
 public class OfficialApiConnection {
