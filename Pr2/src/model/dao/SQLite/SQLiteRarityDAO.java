@@ -32,7 +32,18 @@ public class SQLiteRarityDAO implements CRUD {
 
     @Override
     public void actualitzar(Brawler obj) {
+        String sql = "UPDATE rarities SET rarity_id = ?, nom = ? WHERE rarity_id = ?";
+        Connection con = DBConnection.openCon();
 
+        try(PreparedStatement stmt = con.prepareStatement(sql)){
+            stmt.setInt(1,obj.getRarity().getId());
+            stmt.setString(2,obj.getRarity().getName());
+            stmt.setInt(3,obj.getRarity().getId());
+            stmt.close();
+            con.close();
+        } catch (SQLException e){
+            System.out.println("Error al actualitzar dades a la Base de Dades (Rarity)");
+        }
     }
 
     @Override
