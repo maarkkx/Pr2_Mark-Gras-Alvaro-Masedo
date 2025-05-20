@@ -60,7 +60,7 @@ public class SQLiteClassDAO implements CRUD {
                 ps.executeUpdate();
                 System.out.println("S'ha eliminat correctament");
             } else {
-                System.out.println("El brawler no existeix, prova amb un altre");
+                System.out.println("La classe no existeix, prova amb un altre");
             }
 
             ps.close();
