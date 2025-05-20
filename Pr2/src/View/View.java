@@ -12,6 +12,10 @@ public class View {
         System.out.println("6. Mostrar contingut JSON.");
         System.out.println("7. Modificar personatge segons el JSON.");
         System.out.println("8. Còpia total de les dades obtingudes del JSON.");
+        System.out.println("9. Mostrar tots els gadgets");
+        System.out.println("10. Mostrar gadgets d'un Brawler");
+        System.out.println("11. Mostrar tots els starpowers");
+        System.out.println("12. Mostrar starpowers d'un Brawler");
         System.out.println("0. Sortir");
     }
 

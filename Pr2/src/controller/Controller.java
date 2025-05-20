@@ -77,6 +77,22 @@ public class Controller {
                         }
                     }
                     break;
+                case 9:
+                    //Mostrar tots els gadgets
+
+                    break;
+                case 10:
+                    //Mostrar gadgets d'un Brawler
+
+                    break;
+                case 11:
+                    //Mostrar tots els starpowers
+
+                    break;
+                case 12:
+                    //Mostrar starpowers d'un Brawler
+
+                    break;
                 case 0:
                     break;
             }
