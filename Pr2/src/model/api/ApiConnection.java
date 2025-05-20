@@ -6,6 +6,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import model.Brawler;
 import model.RootBrawlers;
+import model.dao.SQLite.SQLiteBrawlerDAO;
 
 import java.io.File;
 import java.io.FileReader;
@@ -73,6 +74,8 @@ public class ApiConnection {
                     }
                 }
                 System.out.println();
+                SQLiteBrawlerDAO dao = new SQLiteBrawlerDAO();
+                dao.crear(b);
             }
 
         } catch (IOException e) {

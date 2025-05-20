@@ -117,15 +117,33 @@ public class SQLiteBrawlerDAO implements CRUD {
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO brawlers(brawler_id, nom, class_id, rarity_id) VALUES (?,?,?,?)");
             ps.setInt(1, obj.getId());
-            ps.
+            ps.setString(2, obj.getName());
+            ps.setInt(3, obj.getBrawlerClass().getId());
+            ps.setInt(4, obj.getRarity().getId());
+            ps.close();
+            con.close();
         } catch (SQLException e) {
-
+            System.out.println(e);
         }
+
+
     }
 
     @Override
     public void actualitzar(Brawler obj) {
-
+        Connection con = DBConnection.openCon();
+        try {
+            PreparedStatement ps = con.prepareStatement("UPDATE brawlers SET brawler_id = ?, nom = ?, class_id = ?, rarity_id = ? WHERE brawler_id = ?");
+            ps.setInt(1, obj.getId());
+            ps.setString(2, obj.getName());
+            ps.setInt(3, obj.getBrawlerClass().getId());
+            ps.setInt(4, obj.getRarity().getId());
+            ps.setInt(5, obj.getId());
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
 }
