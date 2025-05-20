@@ -16,7 +16,7 @@ public class SQLiteBrawlerDAO implements CRUD {
      *Llegeix totes les entrades de la Base de Dades
      */
     public void llegirTot(){
-        // Query SQL per llegir tots els sectors
+        // Query SQL per llegir tots els brawlers
         String sql = "SELECT * FROM brawlers";
 
         // Obre la connexió a la BD
@@ -49,7 +49,7 @@ public class SQLiteBrawlerDAO implements CRUD {
     public void llegirUnaEntrada(){
         Scanner scan = new Scanner(System.in);
 
-        // Query SQL per llegir un sector
+        // Query SQL per llegir un brawler
         String sql = "SELECT * FROM brawlers WHERE nom = ?";
 
         // Obre la connexió a la BD
