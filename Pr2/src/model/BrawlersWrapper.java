@@ -16,7 +16,6 @@ public class BrawlersWrapper {
 
     //Main
     public static void main(String[] args) {
-
         Controller.menu();
     }
 }
