@@ -15,6 +15,7 @@ public class Brawler {
 
     private Rarity rarity;
 
+    //necessitem dues llistes ja que cada brawler te 2 starpower i 2 gadgets
     private List<StarPower> starPowers;
     private List<Gadget> gadgets;
 
