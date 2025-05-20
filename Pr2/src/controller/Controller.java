@@ -3,6 +3,7 @@ import View.*;
 import java.util.Scanner;
 
 import model.api.ApiConnection;
+import model.dao.SQLite.SQLiteGadgetDAO;
 
 public class Controller {
     public static void menu(){
@@ -79,11 +80,11 @@ public class Controller {
                     break;
                 case 9:
                     //Mostrar tots els gadgets
-
+                    BrawlerController.llistarTot();
                     break;
                 case 10:
                     //Mostrar gadgets d'un Brawler
-
+                    BrawlerController.llistarUn();
                     break;
                 case 11:
                     //Mostrar tots els starpowers
