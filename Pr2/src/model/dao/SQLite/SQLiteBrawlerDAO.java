@@ -102,6 +102,9 @@ public class SQLiteBrawlerDAO implements CRUD {
             } else {
                 System.out.println("El brawler no existeix, prova amb un altre");
             }
+
+            ps.executeUpdate();
+
             con.close();
             ps.close();
             check.close();
@@ -120,6 +123,9 @@ public class SQLiteBrawlerDAO implements CRUD {
             ps.setString(2, obj.getName());
             ps.setInt(3, obj.getBrawlerClass().getId());
             ps.setInt(4, obj.getRarity().getId());
+
+            ps.executeUpdate();
+
             ps.close();
             con.close();
         } catch (SQLException e) {
@@ -139,6 +145,9 @@ public class SQLiteBrawlerDAO implements CRUD {
             ps.setInt(3, obj.getBrawlerClass().getId());
             ps.setInt(4, obj.getRarity().getId());
             ps.setInt(5, obj.getId());
+
+            ps.executeUpdate();
+
             ps.close();
             con.close();
         } catch (SQLException e) {

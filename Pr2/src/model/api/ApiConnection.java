@@ -7,6 +7,8 @@ import com.google.gson.JsonParser;
 import model.Brawler;
 import model.RootBrawlers;
 import model.dao.SQLite.SQLiteBrawlerDAO;
+import model.dao.SQLite.SQLiteClassDAO;
+import model.dao.SQLite.SQLiteRarityDAO;
 
 import java.io.File;
 import java.io.FileReader;
@@ -74,6 +76,10 @@ public class ApiConnection {
                     }
                 }
                 System.out.println();
+                SQLiteRarityDAO daoR = new SQLiteRarityDAO();
+                daoR.crear(b);
+                SQLiteClassDAO daoC = new SQLiteClassDAO();
+                daoC.crear(b);
                 SQLiteBrawlerDAO dao = new SQLiteBrawlerDAO();
                 dao.crear(b);
             }
