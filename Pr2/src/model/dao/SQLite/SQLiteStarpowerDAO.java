@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class SQLiteStarpowerDAO implements CRUD {
     @Override
@@ -91,11 +92,34 @@ public class SQLiteStarpowerDAO implements CRUD {
 
     @Override
     public void llegirUnaEntrada() {
-
+        Scanner scan = new Scanner(System.in);
+        Connection con = DBConnection.openCon();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM starpowers WHERE bralwer_id = ?");
+            System.out.println("Escriu l'id del brawler que vols veure les starpower");
+            int id = scan.nextInt();
+            scan.nextLine();
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+            con.close();
+            scan.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 
     @Override
     public void llegirTot() {
-
+        Connection con = DBConnection.openCon();
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM starpowers");
+            System.out.println("Escriu l'id del brawler que vols veure les starpower");
+            ps.executeUpdate();
+            ps.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
     }
 }
