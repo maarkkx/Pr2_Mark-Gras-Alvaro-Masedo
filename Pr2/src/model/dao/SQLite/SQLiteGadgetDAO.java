@@ -11,6 +11,11 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class SQLiteGadgetDAO implements CRUD {
+
+    /**
+     * Crea un gadget
+     * @param obj objecte de on agafa els atributs per crear-lo
+     */
     @Override
     public void crear(Brawler obj) {
         String sql = "INSERT INTO gadgets (gadget_id, nom, descripcio, brawler_id) VALUES (?, ?, ?, ?)";
@@ -22,6 +27,7 @@ public class SQLiteGadgetDAO implements CRUD {
                 try (PreparedStatement stmt = con.prepareStatement(sql);
                      PreparedStatement checkStmt = con.prepareStatement(sqlCheck)) {
 
+                    //comprovacio de que existeix el gadget, en cas de que si, no fa res
                     checkStmt.setInt(1, gadget.getId());
                     ResultSet rs = checkStmt.executeQuery();
                     rs.next();
@@ -45,6 +51,10 @@ public class SQLiteGadgetDAO implements CRUD {
         }
     }
 
+    /**
+     * Actualitzar un gadget
+     * @param obj obejcte de on agafa els atributs per modificar
+     */
     @Override
     public void actualitzar(Brawler obj) {
         String sql = "UPDATE gadgets SET gadget_id = ?, nom = ?, descripcio = ?, brawler_id = ? WHERE gadget_id = ?";
@@ -56,6 +66,7 @@ public class SQLiteGadgetDAO implements CRUD {
                 try (PreparedStatement stmt = con.prepareStatement(sql);
                      PreparedStatement checkStmt = con.prepareStatement(sqlCheck)) {
 
+                    //comprovacio de si existeix el gadget, en cas de que si, l'actualitza
                     checkStmt.setInt(1, gadget.getId());
                     ResultSet rs = checkStmt.executeQuery();
                     rs.next();
@@ -81,6 +92,10 @@ public class SQLiteGadgetDAO implements CRUD {
         }
     }
 
+    /**
+     * Elimina un gadget segons el id
+     * @param id parametre per poder elimianr el gadget
+     */
     @Override
     public void eliminar(int id) {
         String sql = "DELETE FROM gadgets WHERE brawler_id = ?";
@@ -90,9 +105,9 @@ public class SQLiteGadgetDAO implements CRUD {
         try(PreparedStatement stmt = con.prepareStatement(sql)){
             PreparedStatement check = con.prepareStatement(sqlSelect);
 
+            //Comprovacio de si existeix el gadget seleccionat abans d'eliminarlo
             check.setInt(1,id);
             ResultSet rs = check.executeQuery();
-
             if(rs.next() && rs.getInt(1) > 0){
                 stmt.setInt(1,id);
                 stmt.executeUpdate();
@@ -152,6 +167,9 @@ public class SQLiteGadgetDAO implements CRUD {
         }
     }
 
+    /**
+     * funcio per llegir tots els gadgets de la BDD
+     */
     @Override
     public void llegirTot() {
         // Query SQL per llegir tots els gadgets

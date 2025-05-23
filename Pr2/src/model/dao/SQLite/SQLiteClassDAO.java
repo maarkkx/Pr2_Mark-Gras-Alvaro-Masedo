@@ -11,13 +11,18 @@ import java.sql.SQLException;
 
 public class SQLiteClassDAO implements CRUD {
 
+    /**
+     * Funcio per crear una clase
+     * @param obj objecte necessari per els atributs de la clase
+     */
     @Override
     public void crear(Brawler obj) {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO classes (class_id, nom) VALUES (?,?)");
-            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM classes WHERE class_id = ?");
 
+            //comprova si ja existeix la clase, en cas de existir no fa res
+            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM classes WHERE class_id = ?");
             checkStmt.setInt(1, obj.getBrawlerClass().getId());
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
@@ -37,13 +42,18 @@ public class SQLiteClassDAO implements CRUD {
         }
     }
 
+    /**
+     * Actualitza un objecte
+     * @param obj objecte necessari per omplir els atributs del registre
+     */
     @Override
     public void actualitzar(Brawler obj) {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE classes SET class_id = ?, nom = ? WHERE class_id = ?");
-            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM classes WHERE class_id = ?");
 
+            //comprova si existeix la clase, en cas de existir la actualitza
+            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM classes WHERE class_id = ?");
             checkStmt.setInt(1, obj.getBrawlerClass().getId());
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
@@ -63,12 +73,17 @@ public class SQLiteClassDAO implements CRUD {
         }
     }
 
+    /**
+     * Eliminar una clase segons el id
+     * @param id id que necessita per eliminar la clase
+     */
     @Override
     public void eliminar(int id) {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("DELETE FROM classes WHERE class_id = ?");
 
+            //Comprovacio de si existeix la clase amb el id introduit
             PreparedStatement check = con.prepareStatement("SELECT COUNT(*) FROM classes WHERE class_id = ?");
             check.setInt(1, id);
             ResultSet rs = check.executeQuery();
