@@ -122,7 +122,7 @@ public class SQLiteBrawlerDAO implements CRUD {
             PreparedStatement ps = con.prepareStatement("INSERT INTO brawlers(brawler_id, nom, class_id, rarity_id) VALUES (?,?,?,?)");
             PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
 
-            checkStmt.setInt(1, obj.getBrawlerClass().getId());
+            checkStmt.setInt(1, obj.getId());
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
             int count = rs.getInt(1);
@@ -153,7 +153,7 @@ public class SQLiteBrawlerDAO implements CRUD {
             PreparedStatement ps = con.prepareStatement("UPDATE brawlers SET brawler_id = ?, nom = ?, class_id = ?, rarity_id = ? WHERE brawler_id = ?");
             PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
 
-            checkStmt.setInt(1, obj.getBrawlerClass().getId());
+            checkStmt.setInt(1, obj.getId());
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
             int count = rs.getInt(1);

@@ -33,6 +33,7 @@ public class SQLiteGadgetDAO implements CRUD {
                         stmt.setString(2, gadget.getName());
                         stmt.setString(3, gadget.getDescription());
                         stmt.setInt(4, obj.getId());
+                        stmt.executeUpdate();
 
                         System.out.println("Gadget afegit: " + gadget.getName());
                     }
