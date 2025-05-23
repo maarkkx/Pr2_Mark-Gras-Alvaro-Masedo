@@ -11,6 +11,10 @@ import java.sql.SQLException;
 
 public class SQLiteRarityDAO implements CRUD {
 
+    /**
+     * Funcio per crear una rarity
+     * @param obj objecte d'on agafa els atributs per crear-lo
+     */
     @Override
     public void crear(Brawler obj) {
         String sql = "INSERT INTO rarities (rarity_id, nom) VALUES (?,?)";
@@ -20,6 +24,7 @@ public class SQLiteRarityDAO implements CRUD {
         try (PreparedStatement stmt = con.prepareStatement(sql);
             PreparedStatement checkStmt = con.prepareStatement(sqlSelect)){
 
+            //comprovacio de si existeix la rarity, en cas de que si no fa res
             checkStmt.setInt(1, obj.getRarity().getId());
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
@@ -40,6 +45,10 @@ public class SQLiteRarityDAO implements CRUD {
         }
     }
 
+    /**
+     * Funcio per actualitzar una rarity
+     * @param obj objecte d'on agafa els atributs per actualitzar-lo
+     */
     @Override
     public void actualitzar(Brawler obj) {
         String sql = "UPDATE rarities SET rarity_id = ?, nom = ? WHERE rarity_id = ?";
@@ -49,6 +58,7 @@ public class SQLiteRarityDAO implements CRUD {
         try(PreparedStatement stmt = con.prepareStatement(sql);
             PreparedStatement checkStmt = con.prepareStatement(sqlSelect)){
 
+            //comprovacio si existeix la rarity, en cas de que si, l'actualitza
             checkStmt.setInt(1, obj.getRarity().getId());
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
@@ -68,6 +78,10 @@ public class SQLiteRarityDAO implements CRUD {
         }
     }
 
+    /**
+     * Funcio per eliminar una rarity
+     * @param id parametre necessari per elimiar rarity
+     */
     @Override
     public void eliminar(int id) {
         String sql = "DELETE FROM rarities WHERE rarity_id = ?";
@@ -77,9 +91,9 @@ public class SQLiteRarityDAO implements CRUD {
         try(PreparedStatement stmt = con.prepareStatement(sql)){
             PreparedStatement check = con.prepareStatement(sqlSelect);
 
+            //comprovacio si existeix la rarity que eliminar
             check.setInt(1,id);
             ResultSet rs = check.executeQuery();
-
             if(rs.next() && rs.getInt(1) > 0){
                 stmt.setInt(1,id);
                 stmt.executeUpdate();

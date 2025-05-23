@@ -19,6 +19,7 @@ public class SQLiteStarpowerDAO implements CRUD {
             PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM starpowers WHERE starpower_id = ?");
             for (Brawler.StarPower starpower : obj.getStarPowers()) {
 
+                //comprovacio si existeix la starpower, en cas de que si, no fa res
                 checkStmt.setInt(1, starpower.getId());
                 ResultSet rs = checkStmt.executeQuery();
                 rs.next();
@@ -40,6 +41,10 @@ public class SQLiteStarpowerDAO implements CRUD {
         }
     }
 
+    /**
+     * Actualitzar starpower
+     * @param obj objecte per agafar atributs per actualitzarlo
+     */
     @Override
     public void actualitzar(Brawler obj) {
         Connection con = DBConnection.openCon();
@@ -49,6 +54,7 @@ public class SQLiteStarpowerDAO implements CRUD {
 
             for (Brawler.StarPower starpower : obj.getStarPowers()) {
 
+                //comprovacio si existeix la starpower, en cas de existir, la actualitza
                 checkStmt.setInt(1, starpower.getId());
                 ResultSet rs = checkStmt.executeQuery();
                 rs.next();
@@ -71,6 +77,10 @@ public class SQLiteStarpowerDAO implements CRUD {
         }
     }
 
+    /**
+     * eliminar starpower amb id
+     * @param id parametre per poder eliminar starpower
+     */
     @Override
     public void eliminar(int id) {
         Connection con = DBConnection.openCon();
@@ -78,6 +88,7 @@ public class SQLiteStarpowerDAO implements CRUD {
             PreparedStatement ps = con.prepareStatement("DELETE FROM starpowers WHERE brawler_id = ?");
             ps.setInt(1, id);
 
+            //comprovacio si existeix la starpower
             PreparedStatement check = con.prepareStatement("SELECT COUNT(*) FROM starpowers WHERE starpower_id = ?");
             check.setInt(1, id);
             ResultSet rs = check.executeQuery();
