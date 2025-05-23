@@ -25,7 +25,7 @@ CREATE TABLE "gadgets" (
 
 CREATE TABLE "rarities" (
 	"rarity_id"	INTEGER NOT NULL UNIQUE,
-	"nom"	INTEGER NOT NULL,
+	"nom"	TEXT NOT NULL,
 	PRIMARY KEY("rarity_id")
 );
 
