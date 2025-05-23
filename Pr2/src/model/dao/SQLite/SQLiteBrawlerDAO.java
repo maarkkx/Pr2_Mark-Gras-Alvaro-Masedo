@@ -60,6 +60,9 @@ public class SQLiteBrawlerDAO implements CRUD {
             System.out.println("Escriu el nom del Brawler que vols comprovar: ");
             String nom = scan.nextLine();
 
+            //Fica el nom amb la primera lletra en majuscula
+            nom = nom.substring(0, 1).toUpperCase() + nom.substring(1).toLowerCase();
+
             // Comprova si el brawler existeix
             PreparedStatement check = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE nom = ?");
             check.setString(1,nom);
@@ -176,5 +179,4 @@ public class SQLiteBrawlerDAO implements CRUD {
             System.out.println(e);
         }
     }
-
 }

@@ -130,22 +130,20 @@ public class SQLiteGadgetDAO implements CRUD {
             int id = scan.nextInt();
 
             // Comprova si el brawler existeix
-            PreparedStatement check = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE nom = ?");
+            PreparedStatement check = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
             check.setInt(1,id);
             ResultSet rs = check.executeQuery();
+            stmt.setInt(1,id);
+            ResultSet rs2 = stmt.executeQuery();
+            while (rs2.next() && rs.getInt(1) == 1){
 
-            if(rs.next() && rs.getInt(1) == 1){
                 // Mostra les dades del gadget
-                stmt.setInt(1,id);
-                ResultSet rs2 = stmt.executeQuery();
                 System.out.printf("Gadget ID: %-10d Nom: %-25s Descripcio: %-130s Brawler ID: %-5d\n",
                         rs2.getInt("gadget_id"),
                         rs2.getString("nom"),
                         rs2.getString("descripcio"),
                         rs2.getInt("brawler_id")
                 );
-            } else {
-                System.out.println("El Brawler no existeix, prova amb un altre ID");
             }
             check.close();
             stmt.close();
