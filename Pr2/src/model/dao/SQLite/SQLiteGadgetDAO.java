@@ -147,9 +147,12 @@ public class SQLiteGadgetDAO implements CRUD {
                         rs2.getString("descripcio"),
                         rs2.getInt("brawler_id")
                 );
+                rs2.close();
             } else {
                 System.out.println("El Brawler no existeix, prova amb un altre ID");
             }
+            check.close();
+            rs.close();
             stmt.close();
             con.close();
         } catch (SQLException e) {
@@ -177,6 +180,7 @@ public class SQLiteGadgetDAO implements CRUD {
                         rs.getInt("brawler_id")
                 );
             }
+            rs.close();
             stmt.close();
             con.close();
         } catch (SQLException e){

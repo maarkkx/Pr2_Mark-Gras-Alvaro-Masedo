@@ -36,6 +36,7 @@ public class SQLiteBrawlerDAO implements CRUD {
             }
             stmt.close();
             con.close();
+            rs.close();
         } catch (SQLException e){
             System.out.println("Error al llegir dades de la Base de Dades");
         }
@@ -76,10 +77,13 @@ public class SQLiteBrawlerDAO implements CRUD {
                             rs2.getInt("class_id"),
                             rs2.getInt("rarity_id")
                     );
+                    rs2.close();
             } else {
                 System.out.println("El Brawler no existeix, prova amb un altre nom");
             }
+            check.close();
             stmt.close();
+            scan.close();
             con.close();
         } catch (SQLException e) {
             System.out.println("Error al llegir dades de la base de dades");
@@ -105,6 +109,7 @@ public class SQLiteBrawlerDAO implements CRUD {
 
             ps.executeUpdate();
 
+            rs.close();
             con.close();
             ps.close();
             check.close();
@@ -119,13 +124,24 @@ public class SQLiteBrawlerDAO implements CRUD {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO brawlers(brawler_id, nom, class_id, rarity_id) VALUES (?,?,?,?)");
-            ps.setInt(1, obj.getId());
-            ps.setString(2, obj.getName());
-            ps.setInt(3, obj.getBrawlerClass().getId());
-            ps.setInt(4, obj.getRarity().getId());
+            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
 
-            ps.executeUpdate();
+            checkStmt.setInt(1, obj.getBrawlerClass().getId());
+            ResultSet rs = checkStmt.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
 
+            if(count == 0) {
+                ps.setInt(1, obj.getId());
+                ps.setString(2, obj.getName());
+                ps.setInt(3, obj.getBrawlerClass().getId());
+                ps.setInt(4, obj.getRarity().getId());
+
+                ps.executeUpdate();
+            }
+
+            rs.close();
+            checkStmt.close();
             ps.close();
             con.close();
         } catch (SQLException e) {
@@ -140,14 +156,25 @@ public class SQLiteBrawlerDAO implements CRUD {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE brawlers SET brawler_id = ?, nom = ?, class_id = ?, rarity_id = ? WHERE brawler_id = ?");
-            ps.setInt(1, obj.getId());
-            ps.setString(2, obj.getName());
-            ps.setInt(3, obj.getBrawlerClass().getId());
-            ps.setInt(4, obj.getRarity().getId());
-            ps.setInt(5, obj.getId());
+            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
 
-            ps.executeUpdate();
+            checkStmt.setInt(1, obj.getBrawlerClass().getId());
+            ResultSet rs = checkStmt.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
 
+            if (count == 0) {
+                ps.setInt(1, obj.getId());
+                ps.setString(2, obj.getName());
+                ps.setInt(3, obj.getBrawlerClass().getId());
+                ps.setInt(4, obj.getRarity().getId());
+                ps.setInt(5, obj.getId());
+
+                ps.executeUpdate();
+            }
+
+            rs.close();
+            checkStmt.close();
             ps.close();
             con.close();
         } catch (SQLException e) {
