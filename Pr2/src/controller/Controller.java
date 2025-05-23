@@ -78,7 +78,8 @@ public class Controller {
                     break;
                 case 11:
                     //Mostrar starpowers d'un Brawler
-
+                    SQLiteStarpowerDAO sp2 = new SQLiteStarpowerDAO();
+                    sp2.llegirUnaEntrada();
                     break;
                 case 0:
                     break;
