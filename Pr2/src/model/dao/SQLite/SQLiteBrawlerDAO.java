@@ -158,7 +158,7 @@ public class SQLiteBrawlerDAO implements CRUD {
             rs.next();
             int count = rs.getInt(1);
 
-            if (count == 0) {
+            if (count == 1) {
                 ps.setInt(1, obj.getId());
                 ps.setString(2, obj.getName());
                 ps.setInt(3, obj.getBrawlerClass().getId());

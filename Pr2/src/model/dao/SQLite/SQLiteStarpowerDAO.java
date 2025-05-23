@@ -54,7 +54,7 @@ public class SQLiteStarpowerDAO implements CRUD {
                 rs.next();
                 int count = rs.getInt(1);
 
-                if (count == 0) {
+                if (count == 1) {
                     ps.setInt(1, starpower.getId());
                     ps.setString(2, starpower.getName());
                     ps.setString(3, starpower.getDescription());

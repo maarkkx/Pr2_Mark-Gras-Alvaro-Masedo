@@ -48,7 +48,7 @@ public class SQLiteClassDAO implements CRUD {
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
             int count = rs.getInt(1);
-            if (count == 0) {
+            if (count == 1) {
                 ps.setInt(1, obj.getBrawlerClass().getId());
                 ps.setString(2, obj.getBrawlerClass().getName());
                 ps.setInt(3, obj.getBrawlerClass().getId());

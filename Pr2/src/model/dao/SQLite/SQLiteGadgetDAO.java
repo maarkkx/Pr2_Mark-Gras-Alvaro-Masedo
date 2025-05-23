@@ -61,7 +61,7 @@ public class SQLiteGadgetDAO implements CRUD {
                     rs.next();
                     int count = rs.getInt(1);
 
-                    if (count == 0) {
+                    if (count == 1) {
                         stmt.setInt(1, gadget.getId());
                         stmt.setString(2, gadget.getName());
                         stmt.setString(3, gadget.getDescription());

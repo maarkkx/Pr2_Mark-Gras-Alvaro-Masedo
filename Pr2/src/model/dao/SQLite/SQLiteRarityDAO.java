@@ -53,7 +53,7 @@ public class SQLiteRarityDAO implements CRUD {
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
             int count = rs.getInt(1);
-            if (count == 0) {
+            if (count == 1) {
                 stmt.setInt(1,obj.getRarity().getId());
                 stmt.setString(2,obj.getRarity().getName());
                 stmt.setInt(3,obj.getRarity().getId());
