@@ -169,26 +169,37 @@ public class ApiConnection {
         getJson(url, "src/jsons/unBrawler.json");
         llegirJsonUnBrawler();
 
-        Gson gson = new Gson();
-        try (FileReader reader = new FileReader("src/jsons/unBrawler.json")) {
+        System.out.println("Vols actualitzar el Brawler? Sí (1), No (0)");
+        int num = scan.nextInt();
+        scan.nextLine();
 
-            RootBrawlers root = gson.fromJson(reader, RootBrawlers.class);
-            List<Brawler> brawlers = root.getList();
+        switch (num) {
+            case 1:
+                Gson gson = new Gson();
+                try (FileReader reader = new FileReader("src/jsons/unBrawler.json")) {
 
-            for (Brawler b : brawlers) {
-                SQLiteRarityDAO daoR = new SQLiteRarityDAO();
-                daoR.actualitzar(b);
-                SQLiteClassDAO daoC = new SQLiteClassDAO();
-                daoC.actualitzar(b);
-                SQLiteBrawlerDAO dao = new SQLiteBrawlerDAO();
-                dao.actualitzar(b);
-                SQLiteStarpowerDAO daoSP = new SQLiteStarpowerDAO();
-                daoSP.actualitzar(b);
-                SQLiteGadgetDAO daoG = new SQLiteGadgetDAO();
-                daoG.actualitzar(b);
-            }
-        } catch (IOException e) {
-            System.out.println(e);
+                    RootBrawlers root = gson.fromJson(reader, RootBrawlers.class);
+                    List<Brawler> brawlers = root.getList();
+
+                    for (Brawler b : brawlers) {
+                        SQLiteRarityDAO daoR = new SQLiteRarityDAO();
+                        daoR.actualitzar(b);
+                        SQLiteClassDAO daoC = new SQLiteClassDAO();
+                        daoC.actualitzar(b);
+                        SQLiteBrawlerDAO dao = new SQLiteBrawlerDAO();
+                        dao.actualitzar(b);
+                        SQLiteStarpowerDAO daoSP = new SQLiteStarpowerDAO();
+                        daoSP.actualitzar(b);
+                        SQLiteGadgetDAO daoG = new SQLiteGadgetDAO();
+                        daoG.actualitzar(b);
+                    }
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
+                break;
+
+            case 0:
+                break;
         }
     }
 }

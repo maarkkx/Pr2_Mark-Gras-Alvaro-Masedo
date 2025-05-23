@@ -31,7 +31,7 @@ public class Controller {
                     break;
                 case 4:
                     //Modificar personatge segons l’endpoint.
-
+                    ApiConnection.actualitzarUnBrawler();
                     break;
                 case 5:
                     //Còpia total de les dades obtingudes de l’endpoint.
