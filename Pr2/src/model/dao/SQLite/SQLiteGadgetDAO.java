@@ -1,10 +1,9 @@
 package model.dao.SQLite;
 
-import model.Brawler;
+import model.Brawlers.Brawler;
 import model.CRUD;
 import model.dao.DBConnection;
 
-import javax.naming.CompositeName;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

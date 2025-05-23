@@ -1,6 +1,6 @@
 package model.dao.SQLite;
 
-import model.Brawler;
+import model.Brawlers.Brawler;
 import model.CRUD;
 import model.dao.DBConnection;
 

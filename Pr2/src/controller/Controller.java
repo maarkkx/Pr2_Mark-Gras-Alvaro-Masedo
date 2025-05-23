@@ -3,8 +3,10 @@ import View.*;
 import java.util.Scanner;
 
 import model.api.ApiConnection;
-import model.dao.SQLite.SQLiteGadgetDAO;
+import model.api.OfficialApiConnection;
 import model.dao.SQLite.SQLiteStarpowerDAO;
+import model.jsonReaders.jsonReader;
+import model.jsonReaders.jsonReaderOficial;
 
 public class Controller {
     public static void menu(){
@@ -26,12 +28,12 @@ public class Controller {
                     break;
                 case 3:
                     //Mostrar el contingut JSON de la API NO OFICIAL
-                    ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
-                    ApiConnection.llegirJson();
+                    ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "Pr2/src/jsons/nous_brawlers.json");
+                    jsonReader.llegirJson("Pr2/src/jsons/nous_brawlers.json");
                     break;
                 case 4:
                     //Modificar personatge segons l’endpoint.
-                    ApiConnection.actualitzarUnBrawler();
+                    jsonReader.actualitzarUnBrawler();
                     break;
                 case 5:
                     //Còpia total de les dades obtingudes de l’endpoint.
@@ -43,25 +45,26 @@ public class Controller {
                         switch (num2){
                             case 1:
                                 //Còpia Parcial: Copiar personatges que no existeixen a la Base de Dades.
-                                ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
-                                ApiConnection.afegirBrawlers();
+                                ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "Pr2/src/jsons/nous_brawlers.json");
+                                jsonReader.afegirBrawlers();
                                 break;
                             case 2:
                                 //Còpia complerta: copiarà tots els personatges de l’endpoint a la BDD, sobrescrivint els existents.
-                                ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
-                                ApiConnection.llegirJson();
-                                ApiConnection.actualitzarBrawlers();
+                                ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "Pr2/src/jsons/nous_brawlers.json");
+                                jsonReader.llegirJson("Pr2/src/jsons/nous_brawlers.json");
+                                jsonReader.actualitzarBrawlers();
                                 break;
                         }
                     }
                     break;
                 case 6:
-                    //Mostrar contingut JSON.
-                    ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
+                    //Mostrar contingut JSON de la API OFICIAL.
+                    OfficialApiConnection.getJson("https://api.brawlstars.com/v1/brawlers", "Pr2/src/jsons/nous_brawlers_APIOFICIAL.json");
+                    jsonReaderOficial.llegirJson("Pr2/src/jsons/nous_brawlers_APIOFICIAL.json");
                     break;
                 case 7:
-                    //Mostrar contingut JSON de la API OFICIAL.
-
+                    //Comprovar que existeix el Brawler segons la API oficial.
+                    jsonReaderOficial.comprovarBrawlerJson("Pr2/src/jsons/nous_brawlers_APIOFICIAL.json");
                     break;
                 case 8:
                     //Mostrar tots els gadgets

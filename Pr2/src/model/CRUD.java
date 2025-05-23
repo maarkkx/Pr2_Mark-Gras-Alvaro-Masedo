@@ -1,5 +1,7 @@
 package model;
 
+import model.Brawlers.Brawler;
+
 public interface CRUD<Object>{
     void crear(Brawler obj);
 

@@ -10,7 +10,7 @@ public class View {
         System.out.println("4. Modificar personatge segons l’endpoint.");
         System.out.println("5. Còpia total de les dades obtingudes de l’endpoint.");
         System.out.println("6. Mostrar contingut JSON de la API OFICIAL.");
-        System.out.println("7. Modificar personatge segons el JSON.");
+        System.out.println("7. Comprovar que existeix el Brawler segons la API ofiial.");
         System.out.println("8. Mostrar tots els gadgets");
         System.out.println("9. Mostrar gadgets d'un Brawler");
         System.out.println("10. Mostrar tots els starpowers");

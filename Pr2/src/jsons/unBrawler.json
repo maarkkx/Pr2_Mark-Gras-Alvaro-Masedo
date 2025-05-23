@@ -1,0 +1,70 @@
+{
+  "id": 16000016,
+  "avatarId": 28000028,
+  "name": "Pam",
+  "hash": "Pam",
+  "path": "Pam",
+  "fankit": "pam",
+  "released": true,
+  "version": 1,
+  "link": "https://brawlify.com/brawlers/detail/Pam",
+  "imageUrl": "https://cdn.brawlify.com/brawlers/borders/16000016.png",
+  "imageUrl2": "https://cdn.brawlify.com/brawlers/borderless/16000016.png",
+  "imageUrl3": "https://cdn.brawlify.com/brawlers/emoji/16000016.png",
+  "class": {
+    "id": 7,
+    "name": "Support"
+  },
+  "rarity": {
+    "id": 4,
+    "name": "Epic",
+    "color": "#d850ff"
+  },
+  "description": "Pam handles an enormous workload at the junkyard and always gets it done! It\u0027s just a shame it keeps her away from her daughter, Jessie...",
+  "descriptionHtml": "Pam handles an enormous workload at the junkyard and always gets it done! It\u0027s just a shame it keeps her away from her daughter, Jessie...",
+  "starPowers": [
+    {
+      "id": 23000092,
+      "name": "Mamas Hug",
+      "path": "Mamas-Hug",
+      "version": 1,
+      "description": "Whenever Pam hits enemy Brawlers with Scrapstorm, she heals herself and nearby friendly Brawlers for x health.",
+      "descriptionHtml": "Whenever Pam hits enemy Brawlers with Scrapstorm, she heals herself and nearby friendly Brawlers for \u003cspan style\u003d\"color:#00cc00;\"\u003ex\u003c/span\u003e health.",
+      "imageUrl": "https://cdn.brawlify.com/star-powers/borderless/23000092.png",
+      "released": true
+    },
+    {
+      "id": 23000139,
+      "name": "Mamas Squeeze",
+      "path": "Mamas-Squeeze",
+      "version": 1,
+      "description": "Healing turret now also damages enemies for x damage per second.",
+      "descriptionHtml": "Healing turret now also damages enemies for \u003cspan style\u003d\"color:#00cc00;\"\u003ex\u003c/span\u003e damage per second.",
+      "imageUrl": "https://cdn.brawlify.com/star-powers/borderless/23000139.png",
+      "released": true
+    }
+  ],
+  "gadgets": [
+    {
+      "id": 23000257,
+      "name": "Pulse Modulator",
+      "path": "Pulse-Modulator",
+      "version": 1,
+      "description": "Pam triggers her turret to emit a pulse that heals allies inside the turret\u0027s range, including herself, for x health.",
+      "descriptionHtml": "Pam triggers her turret to emit a pulse that heals allies inside the turret\u0027s range, including herself, for \u003cspan style\u003d\"color:#00cc00;\"\u003ex\u003c/span\u003e health.",
+      "imageUrl": "https://cdn.brawlify.com/gadgets/borderless/23000257.png",
+      "released": true
+    },
+    {
+      "id": 23000404,
+      "name": "Scrapsucker",
+      "path": "Scrapsucker",
+      "version": 1,
+      "description": "Each hit from Pam\u0027s next attack removes x% of opposing Brawlers\u0027 maximum ammo. Pam reclaims x% of the ammo for herself.",
+      "descriptionHtml": "Each hit from Pam\u0027s next attack removes \u003cspan style\u003d\"color:#00cc00;\"\u003ex%\u003c/span\u003e of opposing Brawlers\u0027 maximum ammo. Pam reclaims \u003cspan style\u003d\"color:#00cc00;\"\u003ex%\u003c/span\u003e of the ammo for herself.",
+      "imageUrl": "https://cdn.brawlify.com/gadgets/borderless/23000404.png",
+      "released": true
+    }
+  ],
+  "videos": []
+}

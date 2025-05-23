@@ -1,4 +1,6 @@
-package model;
+package model.RootBrawlers;
+
+import model.Brawlers.Brawler;
 
 import java.util.List;
 /*Com el json comença amb una List hem de crear una clase amb una list per poder guardar aquesta llista de json dins
