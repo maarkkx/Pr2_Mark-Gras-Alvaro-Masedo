@@ -47,10 +47,8 @@ public class jsonReader {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("Pr2/src/jsons/unBrawler.json")) {
 
-            RootBrawlers root = gson.fromJson(reader, RootBrawlers.class);
-            List<Brawler> brawlers = root.getList();
+            Brawler b = gson.fromJson(reader, Brawler.class);
 
-            for (Brawler b : brawlers) {
                 System.out.println("Brawler: " + b.getName());
                 System.out.println("  Class: " + b.getBrawlerClass().getName());
                 System.out.println("  Rarity: " + b.getRarity().getName());
@@ -67,7 +65,6 @@ public class jsonReader {
                     }
                 }
                 System.out.println();
-            }
 
         } catch (IOException e) {
             System.out.println(e);
