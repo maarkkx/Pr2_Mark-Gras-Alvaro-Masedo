@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class jsonReader {
+    /**
+     * Funcio per retornar un json per consola
+     * @param ruta ruta d'on esta ubicat el json
+     */
     public static void llegirJson(String ruta) {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader(ruta)) {
@@ -43,6 +47,9 @@ public class jsonReader {
         }
     }
 
+    /**
+     * Funcio per llegir el json d'unBrawler
+     */
     public static void llegirJsonUnBrawler() {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("Pr2/src/jsons/unBrawler.json")) {
@@ -71,6 +78,9 @@ public class jsonReader {
         }
     }
 
+    /**
+     * Funcio per afegir totes les dades a la bd (rarity, classes, brawlers, etc)
+     */
     public static void afegirBrawlers() {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("Pr2/src/jsons/nous_brawlers.json")) {
@@ -96,6 +106,9 @@ public class jsonReader {
         }
     }
 
+    /**
+     * Funcio per actualitzar tota la bdd
+     */
     public static void actualitzarBrawlers() {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader("Pr2/src/jsons/nous_brawlers.json")) {
@@ -120,6 +133,9 @@ public class jsonReader {
         }
     }
 
+    /**
+     * funcio per actualitzar només un brawler
+     */
     public static void actualitzarUnBrawler() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Escriu l'id del brawler que vols modificar: ");

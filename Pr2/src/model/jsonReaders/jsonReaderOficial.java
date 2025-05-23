@@ -15,6 +15,10 @@ import java.util.List;
 import java.util.Scanner;
 
 public class jsonReaderOficial {
+    /**
+     * Funcio per llegir un json
+     * @param ruta ruta d'on esta guardat el json
+     */
     public static void llegirJson(String ruta) {
         Gson gson = new Gson();
         try (FileReader reader = new FileReader(ruta)) {
@@ -45,6 +49,10 @@ public class jsonReaderOficial {
         }
     }
 
+    /**
+     * funcio per comprovar si un brawler de la api oficial existeix a la bdd
+     * @param rutaJson ruta del json de la api oficial
+     */
     public static void comprovarBrawlerJson (String rutaJson){
         Scanner scan = new Scanner(System.in);
         System.out.println("Escriu el nom del Brawler que vols comprobar");
@@ -73,7 +81,7 @@ public class jsonReaderOficial {
                 return;
             }
 
-            // Comprobar a la base de dades
+            // Comprovar a la base de dades
             Connection con = DBConnection.openCon();
             String sql = "SELECT COUNT(*) FROM brawlers WHERE nom = ?";
             try (PreparedStatement stmt = con.prepareStatement(sql)) {
