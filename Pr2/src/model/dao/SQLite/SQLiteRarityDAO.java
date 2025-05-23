@@ -32,7 +32,8 @@ public class SQLiteRarityDAO implements CRUD {
                 System.out.println("S'ha afegit correctament la Rarity a la taula");
             }
 
-
+            rs.close();
+            checkStmt.close();
             stmt.close();
             con.close();
         } catch (SQLException e){
@@ -59,6 +60,9 @@ public class SQLiteRarityDAO implements CRUD {
                 stmt.setInt(3,obj.getRarity().getId());
                 stmt.executeUpdate();
             }
+
+            rs.close();
+            checkStmt.close();
             stmt.close();
             con.close();
         } catch (SQLException e){
@@ -85,6 +89,7 @@ public class SQLiteRarityDAO implements CRUD {
             } else {
                 System.out.println("La rarity no existeix, proba amb una altre");
             }
+            rs.close();
             con.close();
             stmt.close();
             check.close();

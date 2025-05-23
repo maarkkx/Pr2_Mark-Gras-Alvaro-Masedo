@@ -31,9 +31,12 @@ public class SQLiteStarpowerDAO implements CRUD {
                     ps.setInt(4, obj.getId());
                     ps.executeUpdate();
                 }
+                ps.close();
+                rs.close();
+                checkStmt.close();
+                con.close();
 
             }
-            ps.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -61,11 +64,13 @@ public class SQLiteStarpowerDAO implements CRUD {
                     ps.setInt(5, starpower.getId());
                     ps.executeUpdate();
                 }
+                ps.close();
+                rs.close();
+                checkStmt.close();
+                con.close();
 
             }
 
-            ps.executeUpdate();
-            ps.close();
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -91,6 +96,7 @@ public class SQLiteStarpowerDAO implements CRUD {
             }
 
             ps.close();
+            rs.close();
             con.close();
         } catch (SQLException e) {
             System.out.println(e);
@@ -108,6 +114,7 @@ public class SQLiteStarpowerDAO implements CRUD {
             scan.nextLine();
             ps.setInt(1, id);
             ps.executeUpdate();
+
             ps.close();
             con.close();
             scan.close();

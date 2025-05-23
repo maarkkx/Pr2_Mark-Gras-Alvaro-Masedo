@@ -16,11 +16,13 @@ public class SQLiteClassDAO implements CRUD {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO classes (class_id, nom) VALUES (?,?)");
+            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM classes WHERE class_id = ?");
             ps.setInt(1, obj.getBrawlerClass().getId());
             ps.setString(2, obj.getBrawlerClass().getName());
 
             ps.executeUpdate();
 
+            checkStmt.close();
             ps.close();
             con.close();
         } catch (SQLException e) {
@@ -62,7 +64,8 @@ public class SQLiteClassDAO implements CRUD {
             } else {
                 System.out.println("La classe no existeix, prova amb un altre");
             }
-
+            rs.close();
+            check.close();
             ps.close();
             con.close();
         } catch (SQLException e) {
