@@ -14,14 +14,24 @@ public class SQLiteRarityDAO implements CRUD {
     @Override
     public void crear(Brawler obj) {
         String sql = "INSERT INTO rarities (rarity_id, nom) VALUES (?,?)";
+        String sqlSelect = "SELECT COUNT(*) FROM rarities WHERE rarity_id = ?";
         Connection con = DBConnection.openCon();
 
-        try (PreparedStatement stmt = con.prepareStatement(sql)){
-            stmt.setInt(1,obj.getRarity().getId());
-            stmt.setString(2,obj.getRarity().getName());
+        try (PreparedStatement stmt = con.prepareStatement(sql);
+            PreparedStatement checkStmt = con.prepareStatement(sqlSelect)){
 
-            stmt.executeUpdate();
-            System.out.println("S'ha afegit correctament la Rarity a la taula");
+            checkStmt.setInt(1, obj.getRarity().getId());
+            ResultSet rs = checkStmt.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+
+            if (count == 0) {
+                stmt.setInt(1,obj.getRarity().getId());
+                stmt.setString(2,obj.getRarity().getName());
+                stmt.executeUpdate();
+                System.out.println("S'ha afegit correctament la Rarity a la taula");
+            }
+
 
             stmt.close();
             con.close();
@@ -33,12 +43,22 @@ public class SQLiteRarityDAO implements CRUD {
     @Override
     public void actualitzar(Brawler obj) {
         String sql = "UPDATE rarities SET rarity_id = ?, nom = ? WHERE rarity_id = ?";
+        String sqlSelect = "SELECT COUNT(*) FROM rarities WHERE rarity_id = ?";
         Connection con = DBConnection.openCon();
 
-        try(PreparedStatement stmt = con.prepareStatement(sql)){
-            stmt.setInt(1,obj.getRarity().getId());
-            stmt.setString(2,obj.getRarity().getName());
-            stmt.setInt(3,obj.getRarity().getId());
+        try(PreparedStatement stmt = con.prepareStatement(sql);
+            PreparedStatement checkStmt = con.prepareStatement(sqlSelect)){
+
+            checkStmt.setInt(1, obj.getRarity().getId());
+            ResultSet rs = checkStmt.executeQuery();
+            rs.next();
+            int count = rs.getInt(1);
+            if (count == 0) {
+                stmt.setInt(1,obj.getRarity().getId());
+                stmt.setString(2,obj.getRarity().getName());
+                stmt.setInt(3,obj.getRarity().getId());
+                stmt.executeUpdate();
+            }
             stmt.close();
             con.close();
         } catch (SQLException e){
