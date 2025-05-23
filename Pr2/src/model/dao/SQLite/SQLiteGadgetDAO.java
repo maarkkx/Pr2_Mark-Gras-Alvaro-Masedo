@@ -34,12 +34,12 @@ public class SQLiteGadgetDAO implements CRUD {
                         stmt.setString(3, gadget.getDescription());
                         stmt.setInt(4, obj.getId());
                         stmt.executeUpdate();
+                        stmt.close();
+                        checkStmt.close();
                         System.out.println("Gadget afegit: " + gadget.getName());
                     }
                 }
             }
-
-
             con.close();
 
         } catch (SQLException e) {
@@ -71,9 +71,12 @@ public class SQLiteGadgetDAO implements CRUD {
                         stmt.setInt(5, gadget.getId());
 
                         stmt.executeUpdate();
-                    }
 
+                    }
+                    stmt.close();
+                    checkStmt.close();
                 }
+
             }
             con.close();
 

@@ -25,23 +25,15 @@ public class SQLiteStarpowerDAO implements CRUD {
                 int count = rs.getInt(1);
 
                 if (count == 0) {
-
+                    ps.setInt(1, starpower.getId());
+                    ps.setString(2, starpower.getName());
+                    ps.setString(3, starpower.getDescription());
+                    ps.setInt(4, obj.getId());
                     ps.executeUpdate();
                 }
 
             }
-
-
             ps.close();
-
-            PreparedStatement ps2 = con.prepareStatement("INSERT INTO starpowers (starpower_id, nom, descripcio, brawler_id) VALUES (?,?,?,?)");
-            ps2.setInt(1, obj.getStarPowers().get(1).getId());
-            ps2.setString(2, obj.getStarPowers().get(1).getName());
-            ps2.setString(3, obj.getStarPowers().get(1).getDescription());
-            ps2.setInt(4, obj.getId());
-
-            ps2.executeUpdate();
-            ps2.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
@@ -51,25 +43,30 @@ public class SQLiteStarpowerDAO implements CRUD {
     public void actualitzar(Brawler obj) {
         Connection con = DBConnection.openCon();
         try {
+            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM starpowers WHERE starpower_id = ?");
             PreparedStatement ps = con.prepareStatement("UPDATE starpowers SET starpower_id = ?, nom = ?, descripcio = ?, brawler_id = ? WHERE starpower_id = ?");
-            ps.setInt(1, obj.getStarPowers().get(0).getId());
-            ps.setString(2, obj.getStarPowers().get(0).getName());
-            ps.setString(3, obj.getStarPowers().get(0).getDescription());
-            ps.setInt(4, obj.getId());
-            ps.setInt(5, obj.getStarPowers().get(0).getId());
+
+            for (Brawler.StarPower starpower : obj.getStarPowers()) {
+
+                checkStmt.setInt(1, starpower.getId());
+                ResultSet rs = checkStmt.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+
+                if (count == 0) {
+                    ps.setInt(1, starpower.getId());
+                    ps.setString(2, starpower.getName());
+                    ps.setString(3, starpower.getDescription());
+                    ps.setInt(4, obj.getId());
+                    ps.setInt(5, starpower.getId());
+                    ps.executeUpdate();
+                }
+
+            }
 
             ps.executeUpdate();
             ps.close();
 
-            PreparedStatement ps2 = con.prepareStatement("UPDATE starpowers SET starpower_id = ?, nom = ?, descripcio = ?, brawler_id = ? WHERE starpower_id = ?");
-            ps2.setInt(1, obj.getStarPowers().get(1).getId());
-            ps2.setString(2, obj.getStarPowers().get(1).getName());
-            ps2.setString(3, obj.getStarPowers().get(1).getDescription());
-            ps2.setInt(4, obj.getId());
-            ps2.setInt(5, obj.getStarPowers().get(1).getId());
-
-            ps2.executeUpdate();
-            ps2.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
