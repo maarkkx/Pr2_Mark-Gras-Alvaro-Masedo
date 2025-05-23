@@ -4,7 +4,12 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+/**
+ * Classe que representa un Brawler segons l'API oficial de Brawl Stars.
+ * Aquesta classe es fa servir per deserialitzar automàticament les dades JSON obtingudes de l'API.
+ */
 public class BrawlerApiOficial {
+
     @SerializedName("id")
     private int id;
 
@@ -51,6 +56,9 @@ public class BrawlerApiOficial {
     }
 
     // Inner classes
+    /**
+     * Classe interna que representa una Star Power d'un Brawler.
+     */
     public static class StarPower {
         private int id;
         private String name;
@@ -62,6 +70,9 @@ public class BrawlerApiOficial {
         public void setName(String name) { this.name = name; }
     }
 
+    /**
+     * Classe interna que representa un Gadget d'un Brawler.
+     */
     public static class Gadget {
         private int id;
         private String name;

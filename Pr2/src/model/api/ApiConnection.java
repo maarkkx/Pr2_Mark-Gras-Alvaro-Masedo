@@ -38,6 +38,7 @@ public class ApiConnection {
             }
             file.getParentFile().mkdirs();
             FileWriter writer = new FileWriter(file);
+
             writer.write(jsonFormatejat);
             writer.close();
         } catch (IOException e) {

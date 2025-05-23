@@ -20,6 +20,7 @@ public class OfficialApiConnection {
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestMethod("GET");
 
+            //Token per poder entrar a la API oficial
             String token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiIsImtpZCI6IjI4YTMxOGY3LTAwMDAtYTFlYi03ZmExLTJjNzQzM2M2Y2NhNSJ9.eyJpc3MiOiJzdXBlcmNlbGwiLCJhdWQiOiJzdXBlcmNlbGw6Z2FtZWFwaSIsImp0aSI6IjdmZmQyYTM4LTU2ZjYtNGQyOC05MjJkLTcwYTgxMmQ2NjIxYyIsImlhdCI6MTc0Nzk5MTQ3Niwic3ViIjoiZGV2ZWxvcGVyLzk1YzQzMzgzLTMzNmItZDAzMS1lZWNlLTg2NGNjOGYwNzI2YiIsInNjb3BlcyI6WyJicmF3bHN0YXJzIl0sImxpbWl0cyI6W3sidGllciI6ImRldmVsb3Blci9zaWx2ZXIiLCJ0eXBlIjoidGhyb3R0bGluZyJ9LHsiY2lkcnMiOlsiODUuNTAuMTYwLjQzIl0sInR5cGUiOiJjbGllbnQifV19.TWlEo3LJneRnROn98pcIEQismNP0exHzV87flcZsJ1mnoJU7g7oLRveXT7PWjTYcNsMGgMgJlwx_eiu-5sQqdA";
             con.setRequestProperty("Authorization", token);
 
