@@ -29,7 +29,7 @@ public class SQLiteRarityDAO implements CRUD {
                 stmt.setInt(1,obj.getRarity().getId());
                 stmt.setString(2,obj.getRarity().getName());
                 stmt.executeUpdate();
-                System.out.println("S'ha afegit correctament la Rarity a la taula");
+                System.out.println("Rarity afegida: " + obj.getRarity().getName());
             }
 
             checkStmt.close();
