@@ -83,7 +83,6 @@ public class SQLiteBrawlerDAO implements CRUD {
             }
             check.close();
             stmt.close();
-            scan.close();
             con.close();
         } catch (SQLException e) {
             System.out.println("Error al llegir dades de la base de dades");

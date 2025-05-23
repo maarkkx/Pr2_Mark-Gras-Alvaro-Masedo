@@ -25,7 +25,7 @@ public class Controller {
                     BrawlerController.llistarUn();
                     break;
                 case 3:
-                    //Mostrar el contingut a l'Endpoint.
+                    //Mostrar el contingut JSON de la API NO OFICIAL
                     ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
                     ApiConnection.llegirJson();
                     break;
@@ -60,7 +60,7 @@ public class Controller {
                     ApiConnection.getJson("https://api.brawlify.com/v1/brawlers", "src/jsons/nous_brawlers.json");
                     break;
                 case 7:
-                    //Modificar personatge segons el JSON.
+                    //Mostrar contingut JSON de la API OFICIAL.
 
                     break;
                 case 8:

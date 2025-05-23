@@ -6,10 +6,10 @@ public class View {
 
         System.out.println("1. Llistar els Brawlers actuals a la Base de Dades.");
         System.out.println("2. Llistar un Brawler actual de la Base de Dades.");
-        System.out.println("3. Mostrar el contingut a l'Endpoint.");
+        System.out.println("3. Mostrar el contingut JSON de la API NO OFICIAL.");
         System.out.println("4. Modificar personatge segons l’endpoint.");
         System.out.println("5. Còpia total de les dades obtingudes de l’endpoint.");
-        System.out.println("6. Mostrar contingut JSON.");
+        System.out.println("6. Mostrar contingut JSON de la API OFICIAL.");
         System.out.println("7. Modificar personatge segons el JSON.");
         System.out.println("8. Mostrar tots els gadgets");
         System.out.println("9. Mostrar gadgets d'un Brawler");
