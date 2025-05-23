@@ -14,33 +14,28 @@ import java.util.Scanner;
 public class SQLiteGadgetDAO implements CRUD {
     @Override
     public void crear(Brawler obj) {
-        String sql = "INSERT INTO gadgets (gadget_id,nom,descripcio,brawler_id) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO gadgets (gadget_id, nom, descripcio, brawler_id) VALUES (?, ?, ?, ?)";
         Connection con = DBConnection.openCon();
 
-        try (PreparedStatement stmt = con.prepareStatement(sql)){
-            if (obj.getGadgets().size() > 1) {
-                stmt.setInt(1,obj.getGadgets().get(0).getId());
-                stmt.setString(2,obj.getGadgets().get(0).getName());
-                stmt.setString(3,obj.getGadgets().get(0).getDescription());
-                stmt.setInt(4,obj.getId());
-                stmt.executeUpdate();
+        try {
+            for (Brawler.Gadget gadget : obj.getGadgets()) {
+                try (PreparedStatement stmt = con.prepareStatement(sql)) {
+                    stmt.setInt(1, gadget.getId());
+                    stmt.setString(2, gadget.getName());
+                    stmt.setString(3, gadget.getDescription());
+                    stmt.setInt(4, obj.getId());
+
+                    stmt.executeUpdate();
+                    System.out.println("S'han afegit correctament els gadgets a la taula");
+                }
             }
 
-            PreparedStatement stmt2 = con.prepareStatement(sql);
-            if (obj.getGadgets().size() > 2) {
 
-                stmt2.setInt(1,obj.getGadgets().get(1).getId());
-                stmt2.setString(2,obj.getGadgets().get(1).getName());
-                stmt2.setString(3,obj.getGadgets().get(1).getDescription());
-                stmt2.setInt(4,obj.getId());
-                stmt2.executeUpdate();
-            }
-            System.out.println("S'han afegit correctament elements a la taula");
-            stmt.close();
-            stmt2.close();
             con.close();
-        } catch (SQLException e){
+
+        } catch (SQLException e) {
             System.out.println("Error al afegir dades a la Base de Dades (Gadgets)");
+            e.printStackTrace(); // Para ver el error exacto
         }
     }
 
@@ -49,33 +44,24 @@ public class SQLiteGadgetDAO implements CRUD {
         String sql = "UPDATE gadgets SET gadget_id = ?, nom = ?, descripcio = ?, brawler_id = ? WHERE gadget_id = ?";
         Connection con = DBConnection.openCon();
 
-        try (PreparedStatement stmt = con.prepareStatement(sql)){
-            if (obj.getGadgets().size() > 1) {
-                stmt.setInt(1,obj.getGadgets().get(0).getId());
-                stmt.setString(2,obj.getGadgets().get(0).getName());
-                stmt.setString(3,obj.getGadgets().get(0).getDescription());
-                stmt.setInt(4,obj.getId());
-                stmt.setInt(5,obj.getGadgets().get(0).getId());
-                stmt.executeUpdate();
+        try {
+            for (Brawler.Gadget gadget : obj.getGadgets()) {
+                try (PreparedStatement stmt = con.prepareStatement(sql)) {
+                    stmt.setInt(1, gadget.getId());
+                    stmt.setString(2, gadget.getName());
+                    stmt.setString(3, gadget.getDescription());
+                    stmt.setInt(4, obj.getId());
+                    stmt.setInt(5, gadget.getId());
+
+                    stmt.executeUpdate();
+                    System.out.println("S'han actualitzat correctament els gadgets");
+                }
             }
-
-
-            PreparedStatement stmt2 = con.prepareStatement(sql);
-            if (obj.getGadgets().size() >2) {
-                stmt2.setInt(1,obj.getGadgets().get(1).getId());
-                stmt2.setString(2,obj.getGadgets().get(1).getName());
-                stmt2.setString(3,obj.getGadgets().get(1).getDescription());
-                stmt2.setInt(4,obj.getId());
-                stmt2.setInt(5,obj.getGadgets().get(1).getId());
-                stmt2.executeUpdate();
-            }
-
-            System.out.println("S'han actualitzat correctament els elements a la taula");
-            stmt.close();
-            stmt2.close();
             con.close();
+
         } catch (SQLException e){
-            System.out.println("Error al afegir dades a la Base de Dades (Gadgets)");
+            System.out.println("Error al actualitzar gadgets:");
+            e.printStackTrace();
         }
     }
 
