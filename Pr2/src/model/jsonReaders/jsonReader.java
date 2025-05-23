@@ -140,10 +140,8 @@ public class jsonReader {
                 Gson gson = new Gson();
                 try (FileReader reader = new FileReader("Pr2/src/jsons/unBrawler.json")) {
 
-                    RootBrawlers root = gson.fromJson(reader, RootBrawlers.class);
-                    List<Brawler> brawlers = root.getList();
+                    Brawler b = gson.fromJson(reader, Brawler.class);
 
-                    for (Brawler b : brawlers) {
                         SQLiteRarityDAO daoR = new SQLiteRarityDAO();
                         daoR.actualitzar(b);
                         SQLiteClassDAO daoC = new SQLiteClassDAO();
@@ -154,7 +152,6 @@ public class jsonReader {
                         daoSP.actualitzar(b);
                         SQLiteGadgetDAO daoG = new SQLiteGadgetDAO();
                         daoG.actualitzar(b);
-                    }
                 } catch (IOException e) {
                     System.out.println(e);
                 }
