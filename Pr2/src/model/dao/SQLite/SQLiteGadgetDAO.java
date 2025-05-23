@@ -15,18 +15,27 @@ public class SQLiteGadgetDAO implements CRUD {
     @Override
     public void crear(Brawler obj) {
         String sql = "INSERT INTO gadgets (gadget_id, nom, descripcio, brawler_id) VALUES (?, ?, ?, ?)";
+        String sqlCheck = "SELECT COUNT(*) FROM gadgets WHERE gadget_id = ?";
         Connection con = DBConnection.openCon();
 
         try {
             for (Brawler.Gadget gadget : obj.getGadgets()) {
-                try (PreparedStatement stmt = con.prepareStatement(sql)) {
-                    stmt.setInt(1, gadget.getId());
-                    stmt.setString(2, gadget.getName());
-                    stmt.setString(3, gadget.getDescription());
-                    stmt.setInt(4, obj.getId());
+                try (PreparedStatement stmt = con.prepareStatement(sql);
+                     PreparedStatement checkStmt = con.prepareStatement(sqlCheck)) {
 
-                    stmt.executeUpdate();
-                    System.out.println("S'han afegit correctament els gadgets a la taula");
+                    checkStmt.setInt(1, gadget.getId());
+                    ResultSet rs = checkStmt.executeQuery();
+                    rs.next();
+                    int count = rs.getInt(1);
+
+                    if (count == 0) {
+                        stmt.setInt(1, gadget.getId());
+                        stmt.setString(2, gadget.getName());
+                        stmt.setString(3, gadget.getDescription());
+                        stmt.setInt(4, obj.getId());
+                        stmt.executeUpdate();
+                        System.out.println("Gadget afegit: " + gadget.getName());
+                    }
                 }
             }
 
@@ -34,32 +43,42 @@ public class SQLiteGadgetDAO implements CRUD {
             con.close();
 
         } catch (SQLException e) {
-            System.out.println("Error al afegir dades a la Base de Dades (Gadgets)");
-            e.printStackTrace(); // Para ver el error exacto
+            System.out.println(e);
         }
     }
 
     @Override
     public void actualitzar(Brawler obj) {
         String sql = "UPDATE gadgets SET gadget_id = ?, nom = ?, descripcio = ?, brawler_id = ? WHERE gadget_id = ?";
+        String sqlCheck = "SELECT COUNT(*) FROM gadgets WHERE gadget_id = ?";
         Connection con = DBConnection.openCon();
 
         try {
             for (Brawler.Gadget gadget : obj.getGadgets()) {
-                try (PreparedStatement stmt = con.prepareStatement(sql)) {
-                    stmt.setInt(1, gadget.getId());
-                    stmt.setString(2, gadget.getName());
-                    stmt.setString(3, gadget.getDescription());
-                    stmt.setInt(4, obj.getId());
-                    stmt.setInt(5, gadget.getId());
+                try (PreparedStatement stmt = con.prepareStatement(sql);
+                     PreparedStatement checkStmt = con.prepareStatement(sqlCheck)) {
 
-                    stmt.executeUpdate();
+                    checkStmt.setInt(1, gadget.getId());
+                    ResultSet rs = checkStmt.executeQuery();
+                    rs.next();
+                    int count = rs.getInt(1);
+
+                    if (count == 0) {
+                        stmt.setInt(1, gadget.getId());
+                        stmt.setString(2, gadget.getName());
+                        stmt.setString(3, gadget.getDescription());
+                        stmt.setInt(4, obj.getId());
+                        stmt.setInt(5, gadget.getId());
+
+                        stmt.executeUpdate();
+                    }
+
                 }
             }
             con.close();
 
         } catch (SQLException e){
-            System.out.println("Error al actualitzar gadgets:");
+            System.out.println(e);
         }
     }
 
@@ -86,7 +105,7 @@ public class SQLiteGadgetDAO implements CRUD {
             stmt.close();
             check.close();
         } catch (SQLException e){
-            System.out.println("Error al eliminar dades a la Base de Dades (gadgets)");
+            System.out.println(e);
         }
     }
 

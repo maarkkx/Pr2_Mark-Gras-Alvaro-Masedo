@@ -16,12 +16,22 @@ public class SQLiteStarpowerDAO implements CRUD {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO starpowers (starpower_id, nom, descripcio, brawler_id) VALUES (?,?,?,?)");
-            ps.setInt(1, obj.getStarPowers().get(0).getId());
-            ps.setString(2, obj.getStarPowers().get(0).getName());
-            ps.setString(3, obj.getStarPowers().get(0).getDescription());
-            ps.setInt(4, obj.getId());
+            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM starpowers WHERE starpower_id = ?");
+            for (Brawler.StarPower starpower : obj.getStarPowers()) {
 
-            ps.executeUpdate();
+                checkStmt.setInt(1, starpower.getId());
+                ResultSet rs = checkStmt.executeQuery();
+                rs.next();
+                int count = rs.getInt(1);
+
+                if (count == 0) {
+
+                    ps.executeUpdate();
+                }
+
+            }
+
+
             ps.close();
 
             PreparedStatement ps2 = con.prepareStatement("INSERT INTO starpowers (starpower_id, nom, descripcio, brawler_id) VALUES (?,?,?,?)");
