@@ -90,12 +90,17 @@ public class SQLiteBrawlerDAO implements CRUD {
         }
     }
 
+    /**
+     * Funcio per eliminar un brawler segons el id
+     * @param id el que utilitza per eliminar el brawler
+     */
     @Override
     public void eliminar(int id) {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("DELETE FROM brawlers WHERE brawler_id = ?");
 
+            //statement per veure si el brawler existeix abans de eliminar-lo
             PreparedStatement check = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
             check.setInt(1, id);
             ResultSet rs = check.executeQuery();
@@ -107,7 +112,6 @@ public class SQLiteBrawlerDAO implements CRUD {
                 System.out.println("El brawler no existeix, prova amb un altre");
             }
 
-            ps.executeUpdate();
 
             con.close();
             ps.close();
@@ -117,14 +121,18 @@ public class SQLiteBrawlerDAO implements CRUD {
         }
     }
 
-
+    /**
+     * Funcio per crear un brawler
+     * @param obj objecte que necessita per crear un brawler a la BBDD
+     */
     @Override
     public void crear(Brawler obj) {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("INSERT INTO brawlers(brawler_id, nom, class_id, rarity_id) VALUES (?,?,?,?)");
-            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
 
+            //Comprovació si el brawler ja existeix, en el cas de que si no fa res.
+            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
             checkStmt.setInt(1, obj.getId());
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
@@ -149,13 +157,18 @@ public class SQLiteBrawlerDAO implements CRUD {
 
     }
 
+    /**
+     * Actualitza un brawler
+     * @param obj objecte necessari per agafar els atributs del brawler i actualitzar-lo
+     */
     @Override
     public void actualitzar(Brawler obj) {
         Connection con = DBConnection.openCon();
         try {
             PreparedStatement ps = con.prepareStatement("UPDATE brawlers SET brawler_id = ?, nom = ?, class_id = ?, rarity_id = ? WHERE brawler_id = ?");
-            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
 
+            //Comprovacio de que existeix el brawler, en cas de que existeixi l'actualitza, sino no fa res
+            PreparedStatement checkStmt = con.prepareStatement("SELECT COUNT(*) FROM brawlers WHERE brawler_id = ?");
             checkStmt.setInt(1, obj.getId());
             ResultSet rs = checkStmt.executeQuery();
             rs.next();
