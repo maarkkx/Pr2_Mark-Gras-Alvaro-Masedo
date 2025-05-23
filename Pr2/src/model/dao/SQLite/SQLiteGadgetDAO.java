@@ -54,14 +54,12 @@ public class SQLiteGadgetDAO implements CRUD {
                     stmt.setInt(5, gadget.getId());
 
                     stmt.executeUpdate();
-                    System.out.println("S'han actualitzat correctament els gadgets");
                 }
             }
             con.close();
 
         } catch (SQLException e){
             System.out.println("Error al actualitzar gadgets:");
-            e.printStackTrace();
         }
     }
 
