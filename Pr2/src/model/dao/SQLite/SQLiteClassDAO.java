@@ -29,9 +29,6 @@ public class SQLiteClassDAO implements CRUD {
                 ps.executeUpdate();
             }
 
-
-
-            rs.close();
             checkStmt.close();
             ps.close();
             con.close();
@@ -58,7 +55,6 @@ public class SQLiteClassDAO implements CRUD {
                 ps.executeUpdate();
             }
 
-            rs.close();
             checkStmt.close();
             ps.close();
             con.close();
@@ -83,7 +79,7 @@ public class SQLiteClassDAO implements CRUD {
             } else {
                 System.out.println("La classe no existeix, prova amb un altre");
             }
-            rs.close();
+
             check.close();
             ps.close();
             con.close();

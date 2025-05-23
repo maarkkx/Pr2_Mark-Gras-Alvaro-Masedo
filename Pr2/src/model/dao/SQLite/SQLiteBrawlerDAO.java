@@ -36,7 +36,6 @@ public class SQLiteBrawlerDAO implements CRUD {
             }
             stmt.close();
             con.close();
-            rs.close();
         } catch (SQLException e){
             System.out.println("Error al llegir dades de la Base de Dades");
         }
@@ -77,7 +76,6 @@ public class SQLiteBrawlerDAO implements CRUD {
                             rs2.getInt("class_id"),
                             rs2.getInt("rarity_id")
                     );
-                    rs2.close();
             } else {
                 System.out.println("El Brawler no existeix, prova amb un altre nom");
             }
@@ -108,7 +106,6 @@ public class SQLiteBrawlerDAO implements CRUD {
 
             ps.executeUpdate();
 
-            rs.close();
             con.close();
             ps.close();
             check.close();
@@ -139,7 +136,6 @@ public class SQLiteBrawlerDAO implements CRUD {
                 ps.executeUpdate();
             }
 
-            rs.close();
             checkStmt.close();
             ps.close();
             con.close();
@@ -172,7 +168,7 @@ public class SQLiteBrawlerDAO implements CRUD {
                 ps.executeUpdate();
             }
 
-            rs.close();
+
             checkStmt.close();
             ps.close();
             con.close();

@@ -33,9 +33,7 @@ public class SQLiteGadgetDAO implements CRUD {
                         stmt.setString(2, gadget.getName());
                         stmt.setString(3, gadget.getDescription());
                         stmt.setInt(4, obj.getId());
-                        stmt.executeUpdate();
-                        stmt.close();
-                        checkStmt.close();
+
                         System.out.println("Gadget afegit: " + gadget.getName());
                     }
                 }
@@ -73,8 +71,6 @@ public class SQLiteGadgetDAO implements CRUD {
                         stmt.executeUpdate();
 
                     }
-                    stmt.close();
-                    checkStmt.close();
                 }
 
             }
@@ -147,12 +143,10 @@ public class SQLiteGadgetDAO implements CRUD {
                         rs2.getString("descripcio"),
                         rs2.getInt("brawler_id")
                 );
-                rs2.close();
             } else {
                 System.out.println("El Brawler no existeix, prova amb un altre ID");
             }
             check.close();
-            rs.close();
             stmt.close();
             con.close();
         } catch (SQLException e) {
@@ -180,7 +174,6 @@ public class SQLiteGadgetDAO implements CRUD {
                         rs.getInt("brawler_id")
                 );
             }
-            rs.close();
             stmt.close();
             con.close();
         } catch (SQLException e){
